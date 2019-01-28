@@ -2,5 +2,12 @@
 
 An OCR example for Android using Tess-Two
 
+
+## References
+Referred to https://github.com/BAData/tesseract-ocr-android-example
+Referred to https://github.com/wajahatkarim3/OCR-Test
+Using https://github.com/rmtheis/tess-two
+
+
 ## LICENSE
 [Apache License, version 2.0](LICENSE)
