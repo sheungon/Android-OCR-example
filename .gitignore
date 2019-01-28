@@ -1,0 +1,19 @@
+*.iml
+.gradle
+/local.properties
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+
+# auto gen
+.idea
+
+# Ignore auto gen files by Fabric
+fabric.properties
+
+# Ignore keystore properties
+/keystore
+
+# Ignore Bintray properies
+bintray.properties

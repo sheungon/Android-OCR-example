@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_show_bounds"
+        android:checkable="true"
+        android:checked="true"
+        android:orderInCategory="100"
+        android:title="@string/action_show_text_bounds"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_recognition_enhancement"
+        android:checkable="true"
+        android:checked="true"
+        android:orderInCategory="101"
+        android:title="@string/action_recognition_enhancement"
+        app:showAsAction="never" />
+
+</menu>
