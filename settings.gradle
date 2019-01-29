@@ -1,1 +1,4 @@
 include ':app', 'opencv-android-sdk'
+include ':tesseract4android'
+
+project(':tesseract4android').projectDir = new File('./Tesseract4Android/tesseract4android')

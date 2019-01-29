@@ -79,7 +79,7 @@ class OCRThread
      * Perform text recognition.
      */
     override fun run() {
-        textRecognitionHelper.prepareTesseract("eng")
+        textRecognitionHelper.prepareTesseract("digits_comma")
         while (runFlag) {
             if (bitmapChanged.compareAndSet(true, false)) {
                 val matrix = Matrix()

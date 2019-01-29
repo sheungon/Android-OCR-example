@@ -130,7 +130,6 @@ class RecognitionActivity : AppCompatActivity(), OCRThread.TextRecognitionListen
     }
 
     companion object {
-
         private val REQUEST_PERMISSION = 1000
     }
 }

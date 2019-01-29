@@ -63,8 +63,8 @@ class TextRecognitionHelper
         }
 
         copyTessDataFiles()
-        tessBaseApi.init(tesseractPath(), language)
         tessBaseApi.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, "0123456789")
+        tessBaseApi.init(tesseractPath(), language)
     }
 
     private fun tesseractPath(): String {

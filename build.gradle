@@ -44,10 +44,6 @@ buildscript {
                 // http://square.github.io/retrofit/
                 'retrofit'           : '2.5.0',
 
-                // TessTwo
-                // https://github.com/rmtheis/tess-two
-                'tess_two'           : '9.0.0',
-
                 // OkHttp interceptor
                 // https://github.com/square/okhttp
                 'ok_http_interceptor': '3.12.1',
