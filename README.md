@@ -8,8 +8,6 @@ Edited from https://github.com/BAData/tesseract-ocr-android-example
 
 Edited from https://github.com/wajahatkarim3/OCR-Test
 
-Using https://github.com/rmtheis/tess-two
-
 Using https://github.com/adaptech-cz/Tesseract4Android
 
 See also https://github.com/tesseract-ocr/tesseract
