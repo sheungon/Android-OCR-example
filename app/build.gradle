@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: '../common.gradle'
 
+apply plugin: 'io.fabric'
+
 android {
     compileSdkVersion compile_sdk_version
 
@@ -88,6 +90,9 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
     implementation "com.rmtheis:tess-two:$versions.tess_two"
     implementation "com.sotwtm.util:ec-log:$versions.android_ec_log"
+    implementation("com.crashlytics.sdk.android:crashlytics:$versions.crashlytics@aar") {
+        transitive = true
+    }
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
