@@ -1,6 +1,6 @@
-# Tess-Two-OCR-Android-example [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2afdd34cf59845fdb3ca9f89aa51cf32)](https://www.codacy.com/app/sheungon/Tess-Two-OCR-Android-example?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sheungon/Tess-Two-OCR-Android-example&amp;utm_campaign=Badge_Grade) [![](https://raw.githubusercontent.com/novoda/novoda/master/assets/btn_apache_lisence.png)](LICENSE)
+# Android-OCR-example [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3325b3cdae81461b85a1b237d8dbc2cd)](https://www.codacy.com/app/sheungon/Android-OCR-example?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sheungon/Android-OCR-example&amp;utm_campaign=Badge_Grade) [![](https://raw.githubusercontent.com/novoda/novoda/master/assets/btn_apache_lisence.png)](LICENSE)
 
-An OCR example for Android using Tesseract based OCR libaray
+An OCR demo for Android using Tesseract based OCR libaray
 
 
 ## References
