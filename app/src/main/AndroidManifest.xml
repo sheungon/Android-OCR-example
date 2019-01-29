@@ -19,7 +19,7 @@
             android:value="61aea2ec7383e3d2f3060efb048c45820d10d313" />
 
         <activity
-            android:name=".RecognitionActivity"
+            android:name=".main.RecognitionActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
