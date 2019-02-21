@@ -158,9 +158,10 @@ class CameraView @JvmOverloads constructor(context: Context, attributes: Attribu
         //if (System.currentTimeMillis() - lastRecongTime < recongInterval) return;
 
         JniBitmapUtil.decode(cameraImgBuf, bytes)
+        val imgBuf = cameraImgBuf ?: return
 
         var imageMat = Mat()
-        Utils.bitmapToMat(cameraImgBuf, imageMat)
+        Utils.bitmapToMat(imgBuf, imageMat)
 
         // Crop image
         val roi: org.opencv.core.Rect
