@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.sotwtm.ocr.demo.option.SegModeBottomSheetDialogFragment" />
+
+        <variable
+            name="options"
+            type="com.sotwtm.ocr.demo.main.OcrOptions" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="0"
+                android:text="PSM_OSD_ONLY"
+                android:textColor='@{options.segMode == 0 ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="1"
+                android:text="PSM_AUTO_OSD"
+                android:textColor='@{options.segMode == 1 ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="2"
+                android:text="PSM_AUTO_ONLY"
+                android:textColor='@{options.segMode == 2 ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="3"
+                android:text="PSM_AUTO"
+                android:textColor='@{options.segMode == 3 ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="4"
+                android:text="PSM_SINGLE_COLUMN"
+                android:textColor='@{options.segMode == 4 ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="5"
+                android:text="PSM_SINGLE_BLOCK_VERT_TEXT"
+                android:textColor='@{options.segMode == 5 ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="6"
+                android:text="PSM_SINGLE_BLOCK (Default)"
+                android:textColor='@{options.segMode == 6 ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="7"
+                android:text="PSM_SINGLE_LINE"
+                android:textColor='@{options.segMode == 7 ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="8"
+                android:text="PSM_SINGLE_WORD"
+                android:textColor='@{options.segMode == 8 ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="9"
+                android:text="PSM_CIRCLE_WORD"
+                android:textColor='@{options.segMode == 9 ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="10"
+                android:text="PSM_SINGLE_CHAR"
+                android:textColor='@{options.segMode == 10 ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="11"
+                android:text="PSM_SPARSE_TEXT"
+                android:textColor='@{options.segMode == 11 ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="12"
+                android:text="PSM_SPARSE_TEXT_OSD"
+                android:textColor='@{options.segMode == 12 ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

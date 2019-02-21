@@ -21,6 +21,9 @@ buildscript {
                 // AndroidX appcompat
                 // https://mvnrepository.com/artifact/androidx.appcompat/appcompat
                 'androidx_appcompat' : '1.0.2',
+                // Android Material
+                // https://mvnrepository.com/artifact/com.google.android.material/material
+                'android_material' : '1.0.0',
                 // AndroidX Kotlin
                 // https://mvnrepository.com/artifact/androidx.core/core-ktx
                 'androidx_ktx'       : '1.0.1',

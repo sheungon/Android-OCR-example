@@ -1,9 +1,11 @@
 package com.sotwtm.ocr.demo.camera
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.Rect
 import com.googlecode.tesseract.android.TessBaseAPI
+import com.sotwtm.ocr.demo.BuildConfig
 import com.sotwtm.util.Log
 import java.io.File
 import java.io.FileOutputStream
@@ -21,8 +23,9 @@ class TextRecognitionHelper
  */
     (context: Context) {
 
-    private val context: Context
-    private val tessBaseApi: TessBaseAPI
+    private val context: Context = context.applicationContext
+    private val tessBaseApi: TessBaseAPI = TessBaseAPI()
+    private val sharedPref: SharedPreferences = context.getSharedPreferences("OCR", Context.MODE_PRIVATE)
 
     /**
      * Get recognized words regions for image.
@@ -45,17 +48,15 @@ class TextRecognitionHelper
     val text: String
         get() = tessBaseApi.utF8Text
 
-    init {
-        this.context = context.applicationContext
-        this.tessBaseApi = TessBaseAPI()
-    }
-
     /**
      * Initialize tesseract engine.
      *
      * @param language Language code in ISO-639-3 format.
      */
-    fun prepareTesseract(language: String) {
+    fun prepareTesseract(
+        language: String,
+        allowDigitOnly: Boolean
+    ) {
         try {
             prepareDirectory(tesseractPath() + TESSERACT_TRAINED_DATA_FOLDER)
         } catch (e: Exception) {
@@ -63,7 +64,10 @@ class TextRecognitionHelper
         }
 
         copyTessDataFiles()
-        tessBaseApi.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, "0123456789")
+        Log.d("AllowDigitOnly: $allowDigitOnly")
+        if (allowDigitOnly) {
+            tessBaseApi.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, "0123456789")
+        }
         tessBaseApi.init(tesseractPath(), language)
     }
 
@@ -83,6 +87,7 @@ class TextRecognitionHelper
         }
     }
 
+    @Synchronized
     private fun copyTessDataFiles() {
         try {
             val fileList = context.assets.list(TextRecognitionHelper.TESSERACT_TRAINED_DATA_FOLDER)
@@ -91,13 +96,16 @@ class TextRecognitionHelper
                 return
             }
 
+            val lastVersion = sharedPref.getInt(KEY_LAST_VERSION_CODE, -1)
+            val versionUpdated = lastVersion < BuildConfig.VERSION_CODE
+
             for (fileName in fileList) {
                 val pathToDataFile =
                     tesseractPath() + TextRecognitionHelper.TESSERACT_TRAINED_DATA_FOLDER + "/" + fileName
-                if (!File(pathToDataFile).exists()) {
+                if (!File(pathToDataFile).exists() || versionUpdated) {
                     val inputStream =
                         context.assets.open(TextRecognitionHelper.TESSERACT_TRAINED_DATA_FOLDER + "/" + fileName)
-                    val out = FileOutputStream(pathToDataFile)
+                    val out = FileOutputStream(pathToDataFile, false)
                     val buf = ByteArray(1024)
                     var length: Int
                     while (true) {
@@ -110,6 +118,13 @@ class TextRecognitionHelper
                     Log.d("Copied " + fileName + "to tessdata")
                 }
             }
+
+            if (versionUpdated) {
+                sharedPref.edit()
+                    .putInt(KEY_LAST_VERSION_CODE, BuildConfig.VERSION_CODE)
+                    .apply()
+                Log.d("Updated trained data to version : ${BuildConfig.VERSION_CODE}")
+            }
         } catch (e: IOException) {
             Log.e("Unable to copy files to tessdata " + e.message)
         }
@@ -121,8 +136,8 @@ class TextRecognitionHelper
      *
      * @param bitmap Image data.
      */
-    fun setBitmap(bitmap: Bitmap) {
-        tessBaseApi.pageSegMode = TessBaseAPI.PageSegMode.PSM_SINGLE_BLOCK
+    fun setBitmap(bitmap: Bitmap, segMode: Int) {
+        tessBaseApi.pageSegMode = segMode
         tessBaseApi.setImage(bitmap)
     }
 
@@ -136,5 +151,6 @@ class TextRecognitionHelper
     companion object {
 
         private const val TESSERACT_TRAINED_DATA_FOLDER = "tessdata"
+        private const val KEY_LAST_VERSION_CODE = "LastVersionCode"
     }
 }

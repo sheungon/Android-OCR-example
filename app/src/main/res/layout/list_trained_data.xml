@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.sotwtm.ocr.demo.option.TrainedDataBottomSheetDialogFragment"/>
+
+        <variable
+            name="options"
+            type="com.sotwtm.ocr.demo.main.OcrOptions" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="eng_fast"
+                android:text="English Fast"
+                android:textColor='@{options.selectedTrainedData == "eng_fast" ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="eng"
+                android:text="English"
+                android:textColor='@{options.selectedTrainedData == "eng" ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="eng_best"
+                android:text="English Best"
+                android:textColor='@{options.selectedTrainedData == "eng_best" ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="digits_comma"
+                android:text="Digits Comma"
+                android:textColor='@{options.selectedTrainedData == "digits_comma" ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="equ"
+                android:text="Equation"
+                android:textColor='@{options.selectedTrainedData == "equ" ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="eng_3.05"
+                android:text="Old English 3.05"
+                android:textColor='@{options.selectedTrainedData == "eng_3.05" ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{fragment::onClick}"
+                android:padding="8dp"
+                android:tag="enm_3.05"
+                android:text="Old English 3.05 (Middle)"
+                android:textColor='@{options.selectedTrainedData == "enm_3.05" ? @android:color/black : @android:color/darker_gray}'
+                tools:textColor="@android:color/darker_gray" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.graphics.Rect
 import android.os.Handler
+import com.sotwtm.util.Log
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
@@ -15,22 +16,41 @@ class OCRThread
  *
  * @param context Application context.
  */
-    (context: Context) : Thread() {
+constructor(
+    val context: Context,
+    _lang: String,
+    _allowDigitOnly: Boolean,
+    var segMode: Int
+) : Thread() {
 
     private val handler: Handler
-    private val textRecognitionHelper: TextRecognitionHelper
+    private var textRecognitionHelper: TextRecognitionHelper = TextRecognitionHelper(context)
     private val bitmapChanged: AtomicBoolean
 
     private var runFlag: Boolean = false
     private var bitmap: Bitmap? = null
     private var regionsListener: TextRegionsListener? = null
     private var textRecognitionListener: TextRecognitionListener? = null
+    private var reInitialize: Boolean = false
 
     init {
-        this.textRecognitionHelper = TextRecognitionHelper(context)
         this.bitmapChanged = AtomicBoolean()
         this.handler = Handler()
     }
+
+    var lang: String = _lang
+        @Synchronized
+        set(value) {
+            field = value
+            reInitialize = true
+        }
+
+    var allowDigitOnly: Boolean = _allowDigitOnly
+        @Synchronized
+        set(value) {
+            field = value
+            reInitialize = true
+        }
 
     /**
      * Update image data for recognition.
@@ -79,14 +99,20 @@ class OCRThread
      * Perform text recognition.
      */
     override fun run() {
-        textRecognitionHelper.prepareTesseract("digits_comma")
+        textRecognitionHelper.prepareTesseract(lang, allowDigitOnly)
         while (runFlag) {
+            if (reInitialize) {
+                textRecognitionHelper = TextRecognitionHelper(context)
+                textRecognitionHelper.prepareTesseract(lang, allowDigitOnly)
+                reInitialize = false
+                Log.d("Re-initialized OCR")
+            }
             if (bitmapChanged.compareAndSet(true, false)) {
                 val matrix = Matrix()
                 matrix.postRotate(90f)
                 val rotatedBitmap = Bitmap
                     .createBitmap(bitmap!!, 0, 0, bitmap!!.width, bitmap!!.height, matrix, true)
-                textRecognitionHelper.setBitmap(rotatedBitmap)
+                textRecognitionHelper.setBitmap(rotatedBitmap, segMode)
                 updateTextRegions()
                 updateOCRText()
                 rotatedBitmap.recycle()

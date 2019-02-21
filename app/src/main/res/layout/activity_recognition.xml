@@ -1,31 +1,46 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".main.RecognitionActivity"
-    tools:ignore="MergeRootFrame">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <data>
+
+        <variable
+            name="options"
+            type="com.sotwtm.ocr.demo.main.OcrOptions" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".main.RecognitionActivity"
+        tools:ignore="MergeRootFrame">
 
-        <com.sotwtm.ocr.demo.camera.CameraView
-            android:id="@+id/camera_surface"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.sotwtm.ocr.demo.camera.CameraView
+                android:id="@+id/camera_surface"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:allowDigitOnly="@{options.allowedDigitOnly}"
+                app:recognitionEnhancement="@{options.recognitionEnhancement}"
+                app:recognizableHeight="@dimen/recognizableHeight"
+                app:segMode="@{options.segMode}"
+                app:showTextBounds="@{options.showTextBounds}"
+                app:trainedData="@{options.selectedTrainedData}" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/camera_ocr_button"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:recognizableHeight="@dimen/recognizableHeight"/>
-
-    </FrameLayout>
-
-    <Button
-        android:id="@+id/camera_ocr_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="makeOCR"
-        android:text="@string/button_perform_ocr" />
-</LinearLayout>
+            android:onClick="makeOCR"
+            android:text="@string/button_perform_ocr" />
+    </LinearLayout>
+</layout>

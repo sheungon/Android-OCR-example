@@ -10,4 +10,7 @@
     <string name="dialog_ocr_button">Dismiss</string>
     <string name="action_recognition_enhancement">Recognition Enhancement</string>
     <string name="error_no_permission">Missing required permission.</string>
+    <string name="action_allow_digit_only">Allow Digit Only</string>
+    <string name="action_recognition_mode">Recognition Mode</string>
+    <string name="action_trained_data">Trained Data</string>
 </resources>

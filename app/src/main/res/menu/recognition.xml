@@ -17,4 +17,25 @@
         android:title="@string/action_recognition_enhancement"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_allow_digit_only"
+        android:checkable="true"
+        android:checked="true"
+        android:orderInCategory="102"
+        android:title="@string/action_allow_digit_only"
+        android:visible="false"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_recognition_mode"
+        android:orderInCategory="103"
+        android:title="@string/action_recognition_mode"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_trained_data"
+        android:orderInCategory="104"
+        android:title="@string/action_trained_data"
+        app:showAsAction="never" />
+
 </menu>

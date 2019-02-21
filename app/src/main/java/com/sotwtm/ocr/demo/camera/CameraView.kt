@@ -10,6 +10,9 @@ import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import androidx.databinding.BindingMethod
+import androidx.databinding.BindingMethods
+import com.googlecode.tesseract.android.TessBaseAPI
 import com.sotwtm.ocr.demo.R
 import com.sotwtm.ocr.demo.jni.JniBitmapUtil
 import com.sotwtm.util.Log
@@ -22,6 +25,20 @@ import java.util.*
 
 /**
  */
+
+@BindingMethods(
+    value = [
+        BindingMethod(type = CameraView::class, attribute = "showTextBounds", method = "setShowTextBounds"),
+        BindingMethod(type = CameraView::class, attribute = "segMode", method = "setSegMode"),
+        BindingMethod(type = CameraView::class, attribute = "allowDigitOnly", method = "allowDigitOnly"),
+        BindingMethod(type = CameraView::class, attribute = "trainedData", method = "setTrainedData"),
+        BindingMethod(
+            type = CameraView::class,
+            attribute = "recognitionEnhancement",
+            method = "enableRecognitionEnhancement"
+        )
+    ]
+)
 class CameraView @JvmOverloads constructor(context: Context, attributes: AttributeSet? = null) :
     SurfaceView(context, attributes), Camera.PreviewCallback, SurfaceHolder.Callback, OCRThread.TextRegionsListener {
 
@@ -38,7 +55,7 @@ class CameraView @JvmOverloads constructor(context: Context, attributes: Attribu
     private var mCamera: Camera? = null
     private var mVideoSource: ByteArray? = null
     private var cameraImgBuf: Bitmap? = null
-    private val ocrThread: OCRThread
+    private var ocrThread: OCRThread
 
     private val focusPaint: Paint
     private var focusRect: Rect? = null
@@ -77,7 +94,7 @@ class CameraView @JvmOverloads constructor(context: Context, attributes: Attribu
         nonRecognizablePaint.color = 0x77000000
         nonRecognizablePaint.style = Paint.Style.FILL
 
-        ocrThread = OCRThread(context)
+        ocrThread = OCRThread(context, "digits_comma", true, TessBaseAPI.PageSegMode.PSM_SINGLE_BLOCK)
         horizontalRectRation = 1.0f
         verticalRectRation = 1.0f
 
@@ -105,9 +122,10 @@ class CameraView @JvmOverloads constructor(context: Context, attributes: Attribu
     }
 
     fun setShowTextBounds(show: Boolean) {
-        regions.clear()
         ocrThread.setRegionsListener(if (show) this else null)
+        regions.clear()
         invalidate()
+        Log.d("Show Text Bounds: $show")
     }
 
     fun makeOCR(listener: OCRThread.TextRecognitionListener) {
@@ -327,8 +345,30 @@ class CameraView @JvmOverloads constructor(context: Context, attributes: Attribu
         invalidate()
     }
 
-    fun setRecognitionEnhancement(checked: Boolean) {
+    fun enableRecognitionEnhancement(checked: Boolean) {
         recognitionEnhancement = checked
+        Log.d("Enabled recognition enhancement : $checked")
+    }
+
+    fun allowDigitOnly(checked: Boolean) {
+        ocrThread.allowDigitOnly = checked
+        Log.d("Allow digit only : $checked")
+        regions.clear()
+        invalidate()
+    }
+
+    fun setSegMode(segMode: Int) {
+        ocrThread.segMode = segMode
+        Log.d("SegMode : $segMode")
+        regions.clear()
+        invalidate()
+    }
+
+    fun setTrainedData(trainedData: String) {
+        ocrThread.lang = trainedData
+        Log.d("Selected Trained Data: $trainedData")
+        regions.clear()
+        invalidate()
     }
 
     companion object {
