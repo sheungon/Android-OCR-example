@@ -4,14 +4,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: '../common.gradle'
 
-apply plugin: 'io.fabric'
-
 android {
     compileSdkVersion compile_sdk_version
 
     defaultConfig {
         applicationId "com.sotwtm.ocr.demo"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion target_sdk_version
         versionName app_version_name
         versionCode app_version_code
@@ -28,27 +26,19 @@ android {
             debuggable true
             jniDebuggable true
             zipAlignEnabled false
-            minifyEnabled true
-            useProguard true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules_debug.pro'
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules_debug.pro'
             testCoverageEnabled true
             buildConfigField "java.util.Date", "BUILD_TIME", "new java.util.Date(" + System.currentTimeMillis() + "L)"
-            // To disable Fabric - Crashlytics
-            buildConfigField "boolean", "USE_CRASHLYTICS", "false"
-            ext.enableCrashlytics = false
         }
         release {
             debuggable false
             jniDebuggable false
             zipAlignEnabled true
             minifyEnabled true
-            useProguard true
             shrinkResources true
             buildConfigField "java.util.Date", "BUILD_TIME", "new java.util.Date(" + System.currentTimeMillis() + "L)"
-            // To enable Fabric - Crashlytics
-            buildConfigField "boolean", "USE_CRASHLYTICS", "true"
-            ext.enableCrashlytics = true
         }
     }
     externalNativeBuild {
@@ -60,7 +50,7 @@ android {
         abi {
             enable true
             reset()
-            include 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+            include /*'x86', 'x86_64', */'armeabi-v7a', 'arm64-v8a'
             universalApk false
         }
     }
@@ -69,8 +59,8 @@ android {
     * To enable Android Data Binding Library
     * See, https://developer.android.com/topic/libraries/data-binding/index.html
     * */
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding true
     }
 }
 
@@ -81,6 +71,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-$versions.kotlin_env:$versions.kotlin_plugin"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.kotlin_coroutines"
     implementation "androidx.appcompat:appcompat:$versions.androidx_appcompat"
+    implementation "com.google.android.material:material:$versions.android_material"
     implementation "androidx.core:core-ktx:$versions.androidx_ktx"
     implementation "androidx.constraintlayout:constraintlayout:$versions.constranint_layout"
     implementation "com.google.dagger:dagger:$versions.dagger_2"
@@ -90,11 +81,8 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$versions.dagger_2"
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
     implementation "com.sotwtm.util:ec-log:$versions.android_ec_log"
-    implementation("com.crashlytics.sdk.android:crashlytics:$versions.crashlytics@aar") {
-        transitive = true
-    }
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

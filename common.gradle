@@ -25,6 +25,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
     // continue build even found lint error
     lintOptions {
         abortOnError false
@@ -52,10 +56,6 @@ android {
                 includeCompileClasspath false
             }
         } */
-    }
-
-    kapt {
-        useBuildCache = true
     }
 
     buildTypes {
