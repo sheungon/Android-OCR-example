@@ -17,3 +17,6 @@ fabric.properties
 
 # Ignore Bintray properies
 bintray.properties
+
+# Ignore cpp build files
+.cxx
