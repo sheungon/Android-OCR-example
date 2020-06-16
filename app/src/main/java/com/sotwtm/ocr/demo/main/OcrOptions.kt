@@ -9,7 +9,7 @@ class OcrOptions() {
     val showTextBounds = ObservableBoolean(true)
     val recognitionEnhancement = ObservableBoolean(true)
     val allowedDigitOnly = ObservableBoolean(true)
-    val selectedTrainedData = ObservableField<String>("digits_comma")
+    val selectedTrainedData = ObservableField("digits")
     val segMode = ObservableInt(TessBaseAPI.PageSegMode.PSM_SINGLE_BLOCK)
 
     fun setSelectedTrainedData(selected: Any?) {
