@@ -17,7 +17,7 @@ class OCRThread
  * @param context Application context.
  */
 constructor(
-    val context: Context,
+    private val context: Context,
     _lang: String,
     _allowDigitOnly: Boolean,
     var segMode: Int

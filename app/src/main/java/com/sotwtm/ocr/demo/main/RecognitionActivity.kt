@@ -156,7 +156,7 @@ class RecognitionActivity : AppCompatActivity(), OCRThread.TextRecognitionListen
     private fun showOCRDialog(recognizedText: String) {
         val dialogBuilder = AlertDialog.Builder(this)
         dialogBuilder.setTitle(R.string.dialog_ocr_title)
-        dialogBuilder.setPositiveButton(R.string.dialog_ocr_button) { dialog, which ->
+        dialogBuilder.setPositiveButton(R.string.dialog_ocr_button) { _, _ ->
             // empty
         }
         dialogBuilder.setMessage(recognizedText)

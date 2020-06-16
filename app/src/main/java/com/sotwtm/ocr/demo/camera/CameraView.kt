@@ -69,7 +69,7 @@ class CameraView @JvmOverloads constructor(context: Context, attributes: Attribu
     /**
      * AutoFocus callback
      */
-    internal var myAutoFocusCallback: Camera.AutoFocusCallback = Camera.AutoFocusCallback { arg0, arg1 ->
+    private var myAutoFocusCallback: Camera.AutoFocusCallback = Camera.AutoFocusCallback { arg0, arg1 ->
         if (arg0) {
             mCamera!!.cancelAutoFocus()
         }
@@ -373,8 +373,8 @@ class CameraView @JvmOverloads constructor(context: Context, attributes: Attribu
 
     companion object {
 
-        private val DEFAULT_RECOG_HEIGHT_DP = 0
-        private val DEFAULT_RECOG_INTERVAL_MS = 200
+        private const val DEFAULT_RECOG_HEIGHT_DP = 0
+        private const val DEFAULT_RECOG_INTERVAL_MS = 200
 
         init {
             System.loadLibrary("livecamera")
