@@ -134,13 +134,13 @@ class RecognitionActivity : AppCompatActivity(), OCRThread.TextRecognitionListen
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_recognition)
         dataBinding?.options = ocrOptions
         val actionBar = supportActionBar
-        actionBar!!.setDisplayShowHomeEnabled(false)
+        actionBar?.setDisplayShowHomeEnabled(false)
 
         cameraView = findViewById(R.id.camera_surface)
-        cameraView!!.setShowTextBounds(true)
-        cameraView!!.enableRecognitionEnhancement(true)
+        cameraView?.setShowTextBounds(true)
+        cameraView?.enableRecognitionEnhancement(true)
         progressDialog = ProgressDialog(this)
-        progressDialog!!.setMessage(getString(R.string.progress_message_ocr))
+        progressDialog?.setMessage(getString(R.string.progress_message_ocr))
     }
 
     /**
@@ -149,8 +149,8 @@ class RecognitionActivity : AppCompatActivity(), OCRThread.TextRecognitionListen
      * @param view Button instance.
      */
     fun makeOCR(view: View) {
-        progressDialog!!.show()
-        cameraView!!.makeOCR(this)
+        progressDialog?.show()
+        cameraView?.makeOCR(this)
     }
 
     private fun showOCRDialog(recognizedText: String) {
@@ -169,7 +169,7 @@ class RecognitionActivity : AppCompatActivity(), OCRThread.TextRecognitionListen
     }
 
     override fun onTextRecognized(text: String) {
-        progressDialog!!.dismiss()
+        progressDialog?.dismiss()
         showOCRDialog(text)
     }
 
