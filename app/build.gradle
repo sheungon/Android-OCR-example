@@ -6,7 +6,12 @@ apply from: '../common.gradle'
 
 android {
     compileSdkVersion compile_sdk_version
-
+    ndkVersion '20.0.5594570'
+    externalNativeBuild {
+        cmake {
+            version "3.10.2"
+        }
+    }
     defaultConfig {
         applicationId "com.sotwtm.ocr.demo"
         minSdkVersion 21
