@@ -50,7 +50,7 @@
 
 namespace cv {
 namespace dnn {
-CV__DNN_EXPERIMENTAL_NS_BEGIN
+CV__DNN_INLINE_NS_BEGIN
 
 //Slicing
 
@@ -138,6 +138,16 @@ static inline MatShape shape(const UMat& mat)
     return shape(mat.size.p, mat.dims);
 }
 
+#if 0  // issues with MatExpr wrapped into InputArray
+static inline
+MatShape shape(InputArray input)
+{
+    int sz[CV_MAX_DIM];
+    int ndims = input.sizend(sz);
+    return shape(sz, ndims);
+}
+#endif
+
 namespace {inline bool is_neg(int i) { return i < 0; }}
 
 static inline MatShape shape(int a0, int a1=-1, int a2=-1, int a3=-1)
@@ -213,7 +223,7 @@ inline Range clamp(const Range& r, int axisSize)
     return clamped;
 }
 
-CV__DNN_EXPERIMENTAL_NS_END
+CV__DNN_INLINE_NS_END
 }
 }
 #endif

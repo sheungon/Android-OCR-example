@@ -1,8 +1,6 @@
-Please use the following information when submitting customer support requests
+Please use the following information when submitting customer support requests:
 
-Package ID: ippicv_2017u3_lnx_20170822
-Package Contents: Intel(R) Integrated Performance Primitives Integration Wrappers Technical Preview 2017 Update 3
+Package ID: ippicv_2020_lnx_ia32_20191018_general
+Package Contents: Intel(R) Integrated Performance Primitives for OpenCV 2020 Gold
 
 Please direct customer support requests through http://www.intel.com/software/products/support
-
-* Other names and brands may be claimed as the property of others.
