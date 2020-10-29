@@ -10,7 +10,7 @@ buildscript {
         target_sdk_version = 28
 
         versions = [
-                'kotlin_plugin'      : '1.3.72',
+                'kotlin_plugin'      : '1.4.10',
                 'kotlin_env'         : 'jdk8',
 
                 // Kotlin coroutines
@@ -64,7 +64,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath 'com.android.tools.build:gradle:4.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin_plugin"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
